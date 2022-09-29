@@ -1,6 +1,6 @@
 import { IProduct } from "../../redux/types/shopping";
 
-export interface IProductHolderProps {
+export interface ISProductHolderProps {
     item: IProduct;
     onSelection: (item: IProduct) => void;
 };

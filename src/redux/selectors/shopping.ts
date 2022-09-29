@@ -1,15 +1,19 @@
 import { useSelector } from "react-redux";
+import { IProduct } from "../types/shopping";
 
 const useRootState = () => useSelector(state => state);
 
-const useProductListSelector = () => useRootState().shopping.productList;
+const useProductListSelector = (): Array<IProduct> => useRootState().shopping.productList;
 
-const useSelectedProductSelector = () => useRootState().shopping.selectedProduct;
+const useSelectedProductSelector = (): IProduct => useRootState().shopping.selectedProduct;
 
-const useProductQuantitySelector = () => useRootState().shopping.cartProductQuantityMapping;
+const useProductQuantitySelector = (): {[key: number]: number} => useRootState().shopping.cartProductQuantityMapping;
+
+const useLoadStateSelector = (): boolean => useRootState().shopping.isFetchingProducts;
 
 export {
     useProductListSelector,
     useSelectedProductSelector,
-    useProductQuantitySelector
+    useProductQuantitySelector,
+    useLoadStateSelector
 };

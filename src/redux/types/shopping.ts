@@ -1,5 +1,6 @@
 export interface IShoppingModel {
     productList: Array<IProduct>;
+    isFetchingProducts: boolean;
     selectedProduct: IProduct | null;
     cartProductQuantityMapping: {[key: number]: number} | null;
 };

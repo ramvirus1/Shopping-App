@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import styled from "styled-components/native";
 import { ISText, IText } from "./types";
 import { scale } from "react-native-size-matters";
@@ -16,7 +17,7 @@ const SText = ({
     return <Text numberOfLines={2} weight={weightMapping[weight]} size={size}>{text}</Text>
 };
 
-export default SText;
+export default memo(SText);
 
 const Text = styled.Text<IText>`
     font-family: ${p => p.weight};

@@ -1,5 +1,5 @@
 export interface ISText {
-    text: string;
+    text: string | number;
     weight?: 'normal' | 'bold' | 'semibold';
     size?: number;
 };

@@ -1,9 +1,12 @@
 import { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { FlatList } from "react-native";
+import { FlatList, RefreshControl } from "react-native";
 import styled from 'styled-components/native';
 import SProductHolder from '../components/SProductHolder';
-import { useProductListSelector } from "../redux/selectors/shopping"
+import { 
+    useProductListSelector,
+    useLoadStateSelector
+} from "../redux/selectors/shopping"
 import { 
     dispatchFetchProductList,
     dispatchProductSelection 
@@ -13,6 +16,7 @@ import { NavKeys } from '../utils/constants';
 const ProductListScreen = (): JSX.Element => {
     const productList = useProductListSelector();
     const navigation = useNavigation();
+    const isFetchingProducts = useLoadStateSelector();
 
     useEffect(() => {
         dispatchFetchProductList()
@@ -28,6 +32,12 @@ const ProductListScreen = (): JSX.Element => {
             <FlatList
                 data={productList}
                 numColumns={2}
+                refreshControl={
+                    <RefreshControl
+                      refreshing={isFetchingProducts}
+                        onRefresh={dispatchFetchProductList}
+                    />
+                }
                 renderItem={(item) => 
                     <SProductHolder
                         item={item?.item}

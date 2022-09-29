@@ -43,7 +43,7 @@ exports[`SProductholder should render 1`] = `
     }
   >
     <Image
-      resizeMode="resize"
+      resizeMethod="resize"
       source={
         Object {
           "uri": "http://cdn-img.prettylittlething.com/9/0/a/a/90aa90903a135ee59594f47c7685aa7ef3046e44_cly8063_1.jpg?imwidth=1024",

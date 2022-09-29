@@ -1,12 +1,13 @@
+import { memo } from 'react';
 import styled from "styled-components/native";
-import { IProductHolderProps } from "./types";
+import { ISProductHolderProps } from "./types";
 import SText from "../SText";
 import { scale, verticalScale } from 'react-native-size-matters';
 
 const SProductHolder = ({ 
     item,
     onSelection
-}: IProductHolderProps): JSX.Element => {
+}: ISProductHolderProps): JSX.Element => {
     return (
         <ProductMainContainer onPress={() => onSelection(item)}>
             <ProductImageBackground
@@ -22,7 +23,7 @@ const SProductHolder = ({
     )
 };
 
-export default SProductHolder;
+export default memo(SProductHolder);
 
 const ProductMainContainer = styled.TouchableOpacity`
     flex:1;

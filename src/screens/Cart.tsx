@@ -12,17 +12,7 @@ import {
     useProductListSelector, 
     useProductQuantitySelector,
 } from "../redux/selectors/shopping";
-import { NavKeys } from "../utils/constants";
-
-const getTotalAmount = (productQuantities, products) => {
-    let totalAmount = 0;
-    products.forEach(product => {
-        if(productQuantities?.[product?.id]){
-            totalAmount += productQuantities?.[product?.id] * product?.price;
-        }
-    });
-    return totalAmount.toFixed(2);
-};
+import { NavKeys, calculateTotalCost } from "../utils/constants";
 
 const CartProduct = ({ item, quantityMapping, onProductSelect }) => {
     return (
@@ -58,7 +48,7 @@ const CartScreen = (): JSX.Element => {
     const productList = useProductListSelector();
     const selectedProductsWithQuantities = useProductQuantitySelector();
     const selectedProducts = productList.filter(product => selectedProductsWithQuantities?.[product?.id] > 0);
-    const totalPrice = getTotalAmount(selectedProductsWithQuantities, selectedProducts);
+    const totalPrice = calculateTotalCost(selectedProductsWithQuantities, selectedProducts);
     const navigation = useNavigation();
 
     const goToProductDetails = (item) => {
@@ -79,7 +69,7 @@ const CartScreen = (): JSX.Element => {
                                 onProductSelect={goToProductDetails}
                             />
                         }
-                        keyExtractor={item => item.id}
+                        keyExtractor={item => ``+item.id}
                     />
                     <CartAmountContainer>
                         <SText 
@@ -117,6 +107,7 @@ const CartProductHolder = styled.TouchableOpacity`
     flex-direction: row;
     align-items: center;
     align-self: stretch;
+    justify-content: space-between;
     padding: ${scale(5)}px 0px;
     border-bottom-color: black;
     border-bottom-width: 1px;

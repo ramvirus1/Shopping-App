@@ -8,6 +8,7 @@ import HTTPClient from "../../api/httpClient";
 const shoppingHttpClient = new HTTPClient(BASE_URL)
 
 const initialState: IShoppingModel = {
+    isFetchingProducts: false,
     productList: [],
     selectedProduct: null,
     cartProductQuantityMapping: null
@@ -30,12 +31,22 @@ export const shopping = createModel<RootModel>()({
                 ...state.cartProductQuantityMapping,
                 [payload.productId]: payload.productQuantity
             }
+        }),
+        updateProductListLoading: (state, payload) => ({
+            ...state,
+            isFetchingProducts: payload
         })
     },
     effects: (dispatch) => ({
         fetchProductList: async () => {
-            const productListResponse = await shoppingHttpClient.get(shoppingURLs.productsList);
-            dispatch.shopping.updateProductList(productListResponse);
+            try{
+                dispatch.shopping.updateProductListLoading(true);
+                const productListResponse = await shoppingHttpClient.get(shoppingURLs.productsList);
+                dispatch.shopping.updateProductList(productListResponse);
+                dispatch.shopping.updateProductListLoading(false);
+            }catch(error){
+                dispatch.shopping.updateProductListLoading(false);
+            }
         }
     }),
 });

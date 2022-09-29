@@ -1,9 +1,14 @@
+import { memo } from 'react';
 import styled from "styled-components/native";
 import SIcons from "../SIcons";
 import SText from "../SText";
-import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import { ISQuantity } from "./types";
+import { scale } from 'react-native-size-matters';
 
-const SQuantityBox = ({ quantity, onQuantityUpdate }): JSX.Element => {
+const SQuantityBox = ({ 
+    quantity, 
+    onQuantityUpdate 
+}: ISQuantity): JSX.Element => {
     return (
         <QuantityBoxContainer>
             {quantity ? 
@@ -24,7 +29,7 @@ const SQuantityBox = ({ quantity, onQuantityUpdate }): JSX.Element => {
     )
 };
 
-export default SQuantityBox;
+export default memo(SQuantityBox);
 
 const QuantityBoxContainer = styled.View`
     flex-direction: row;
