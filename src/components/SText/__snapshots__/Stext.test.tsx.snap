@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SText should render 1`] = `
+<Text
+  numberOfLines={2}
+  size={20}
+  style={
+    Array [
+      Object {
+        "fontFamily": "Inter_400Regular",
+        "fontSize": 42.857142857142854,
+      },
+    ]
+  }
+  weight="Inter_400Regular"
+>
+  Hi
+</Text>
+`;

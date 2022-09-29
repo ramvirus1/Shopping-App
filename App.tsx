@@ -24,6 +24,7 @@ const App = (): JSX.Element => {
 
   return (
     <Provider store={store}>
+      <StatusBar />
       <AppSafeAreaContainer>
         <NavigationContainer>
             <ShoppingNavStack />

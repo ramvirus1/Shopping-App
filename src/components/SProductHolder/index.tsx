@@ -10,7 +10,7 @@ const SProductHolder = ({
     return (
         <ProductMainContainer onPress={() => onSelection(item)}>
             <ProductImageBackground
-                source={{uri: item?.img}} resizeMode="resize"
+                source={{uri: item?.img}} resizeMethod="resize"
             >
                 <ProductDetailContainer>
                     <SText text={item?.name} weight="bold" size={14}/>

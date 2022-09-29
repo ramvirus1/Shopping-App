@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import styled from "styled-components/native";
 import SIcons from '../components/SIcons';
+import { useSelectedProductSelector } from '../redux/selectors/shopping';
 import { 
     ProductListScreen, 
     ProductDetailScreen, 
@@ -11,6 +12,7 @@ import { NavKeys } from '../utils/constants';
 const ShoppingStack = createNativeStackNavigator();
 
 const ShoppingNavStack = (): JSX.Element => {
+    const selectedProduct = useSelectedProductSelector();
     return (
         <ShoppingStack.Navigator>
             <ShoppingStack.Group screenOptions={({navigation}) => ({
@@ -21,8 +23,16 @@ const ShoppingNavStack = (): JSX.Element => {
                 headerStyle: { backgroundColor: "black", title: "white" },
                 headerTintColor:"white"
             })}>
-                <ShoppingStack.Screen name={NavKeys.Shopping.ProductList} component={ProductListScreen} />
-                <ShoppingStack.Screen name={NavKeys.Shopping.ProductDetail} component={ProductDetailScreen} />
+                <ShoppingStack.Screen
+                    options={{ title: 'Products' }}
+                    name={NavKeys.Shopping.ProductList} 
+                    component={ProductListScreen} 
+                />
+                <ShoppingStack.Screen
+                    options={{ title: selectedProduct?.name || 'Product Detail' }}
+                    name={NavKeys.Shopping.ProductDetail} 
+                    component={ProductDetailScreen} 
+                />
                 <ShoppingStack.Screen name={NavKeys.Shopping.Cart} component={CartScreen} />
             </ShoppingStack.Group>
         </ShoppingStack.Navigator>

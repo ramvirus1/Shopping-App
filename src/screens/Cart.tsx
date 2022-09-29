@@ -27,15 +27,27 @@ const getTotalAmount = (productQuantities, products) => {
 const CartProduct = ({ item, quantityMapping, onProductSelect }) => {
     return (
         <CartProductHolder onPress={() => onProductSelect(item)}>
-            <ProductImage source={{uri: item?.img }} resizeMode="contain"/>
+            <ProductImage source={{uri: item?.img }} resizeMethod="resize"/>
             <ProductDescriptionContainer>
-                <SText text={item?.name} size={13} weight="normal" />
+                <SText 
+                    text={item?.name} 
+                    size={13} 
+                    weight="normal" 
+                />
                 <ProductUnitContainer>
-                    <SText text={`£ ${item?.price}`} size={14} weight="normal" />
-                    <SQuantityBox quantity={quantityMapping?.[item?.id] || 0} onQuantityUpdate={(quantity) => dispatchProductQuantity({
+                    <SText 
+                        text={`£ ${item?.price}`} 
+                        size={14} 
+                        weight="normal" 
+                    />
+                    <SQuantityBox 
+                        quantity={quantityMapping?.[item?.id] || 0} 
+                        onQuantityUpdate={(quantity) => 
+                            dispatchProductQuantity({
                         productId: item?.id,
                         productQuantity: quantity
-                    })}/>
+                        })}
+                    />
                 </ProductUnitContainer>
             </ProductDescriptionContainer>
         </CartProductHolder>
@@ -70,11 +82,23 @@ const CartScreen = (): JSX.Element => {
                         keyExtractor={item => item.id}
                     />
                     <CartAmountContainer>
-                        <SText text="Total Amount" size={15} weight="bold"/>
-                        <SText text={`£ ${totalPrice}`} size={15} weight="bold"/>
+                        <SText 
+                            text="Total Amount" 
+                            size={15} 
+                            weight="bold"
+                        />
+                        <SText 
+                            text={`£ ${totalPrice}`} 
+                            size={15} 
+                            weight="bold"
+                        />
                     </CartAmountContainer>
                 </>
-                 : <SText text="No Products Added to Cart" size={17} weight="bold"/>
+                 : <SText 
+                    text="No Products Added to Cart" 
+                    size={17} 
+                    weight="bold"
+                />
         }
             
         </CartMainContainer>
