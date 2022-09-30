@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 import { FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { scale, verticalScale } from "react-native-size-matters";
+import { moderateScale, scale, verticalScale } from "react-native-size-matters";
 import SText from "../components/SText";
 import SQuantityBox from "../components/SQuantityBox";
 import { 
@@ -106,16 +106,17 @@ const CartMainContainer = styled.View`
 const CartProductHolder = styled.TouchableOpacity`
     flex-direction: row;
     align-items: center;
+    width: 100%;
     align-self: stretch;
     justify-content: space-between;
-    padding: ${scale(5)}px 0px;
+    padding: ${scale(5)}px ${moderateScale(8)}px;
     border-bottom-color: black;
     border-bottom-width: 1px;
 `;
 
 const ProductImage = styled.Image`
-    width: 50px;
-    height: 100px;
+    width: 100px;
+    height: 150px;
     border: 1px solid #ddd;
     border-radius: 2px;
 `;
@@ -123,6 +124,7 @@ const ProductImage = styled.Image`
 const ProductDescriptionContainer = styled.View`
     align-self: stretch;
     padding: ${scale(5)}px;
+    flex-grow:1;
 `;
 
 const ProductUnitContainer = styled.View`
@@ -141,4 +143,4 @@ const CartAmountContainer = styled.View`
     border-top-color: black;
     border-top-width: 1px;
     justify-content : space-between;
-`
+`;

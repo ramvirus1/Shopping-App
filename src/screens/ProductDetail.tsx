@@ -19,6 +19,7 @@ const ProductDetailScreen = (): JSX.Element => {
             <ProductActionContainer>
                 <ProductDetailContainer>
                     <SText text={selectedProduct?.name} weight="bold" size={14}/>
+                    <SText text={selectedProduct?.colour} weight="semibold" size={14}/>
                     <SText text={`£ ${selectedProduct?.price}`} weight="semibold" size={16}/>
                 </ProductDetailContainer>
                 <SQuantityBox 

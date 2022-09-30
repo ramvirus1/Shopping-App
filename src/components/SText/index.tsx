@@ -22,4 +22,5 @@ export default memo(SText);
 const Text = styled.Text<IText>`
     font-family: ${p => p.weight};
     font-size: ${p => scale(p.size)}px;
+    flex-wrap: wrap;
 `
